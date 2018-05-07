@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         SFDC Pretty URLs
-// @namespace    github.com/msmeeks/pretty-urls-in-salesforce
+// @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Convert SFDC URLs to their short form in the Lightning Experience
-// @author       msmeeks
+// @description  Convert SFDC URLs to their short form
+// @author       You
 // @match        https://*.lightning.force.com/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
 // @grant        none
@@ -50,14 +50,17 @@
             )
         );
     }
-
     function convertUrl(link) {
         var objectId;
+
         if (~link.origin.indexOf("lightning")) {
             var urlParts = link.href.split("/");
+            var indexOfr = urlParts.indexOf("r");
             var indexOfSObject = urlParts.indexOf("sObject");
             var indexOfAlohaRedirect = urlParts.indexOf("alohaRedirect");
-            if (indexOfSObject > 0) {
+            if (indexOfr > 0) {
+                objectId = urlParts[indexOfr + 1];
+            } else if (indexOfSObject > 0) {
                 objectId = urlParts[indexOfSObject + 1];
             } else if (indexOfAlohaRedirect > 0) {
                 objectId = urlParts[indexOfAlohaRedirect + 1].split("?")[0];
