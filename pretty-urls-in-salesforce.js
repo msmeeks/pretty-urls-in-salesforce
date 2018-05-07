@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         SFDC Pretty URLs
-// @namespace    http://tampermonkey.net/
+// @namespace    github.com/msmeeks/pretty-urls-in-salesforce
 // @version      0.1
-// @description  Convert SFDC URLs to their short form
-// @author       You
+// @description  Convert SFDC URLs to their short form in the Lightning Experience
+// @author       msmeeks
 // @match        https://*.lightning.force.com/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
 // @grant        none
@@ -50,6 +50,7 @@
             )
         );
     }
+
     function convertUrl(link) {
         var objectId;
 
