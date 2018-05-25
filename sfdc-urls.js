@@ -1,4 +1,4 @@
-SfdcUrls = SFDC_URLS || {
+SfdcUrls = SfdcUrls || {
     getQueryParams: function(qs) {
         qs = qs.split("+").join(" ");
         var params = {},
@@ -31,7 +31,7 @@ SfdcUrls = SFDC_URLS || {
         return r;
     },
 
-    fisValidId: function(id) {
+    isValidId: function(id) {
         return (
             id && (
                 (id.length == 15 && /[a-zA-Z0-9]{15}/.test(id)) ||
@@ -40,7 +40,7 @@ SfdcUrls = SFDC_URLS || {
         );
     },
 
-    fconvertUrl: function(link) {
+    convertUrl: function(link) {
         var objectId;
 
         if (~link.origin.indexOf("lightning")) {
@@ -56,16 +56,16 @@ SfdcUrls = SFDC_URLS || {
                 objectId = urlParts[indexOfAlohaRedirect + 1].split("?")[0];
             } else {
                 try {
-                    var jsonBlob = JSON.parse(decodeBase64(decodeURIComponent(link.hash.substr(1))));
+                    var jsonBlob = JSON.parse(SfdcUrls.decodeBase64(decodeURIComponent(link.hash.substr(1))));
                     if (jsonBlob.attributes.feedElementId != undefined) {
                         objectId = jsonBlob.attributes.feedElementId;
                     }
                 } catch (e) {
-                    console.debug("failed to parse encoded json for " + link.href);
+                    return null; // Unable to parse URL
                 }
             }
         } else {
-            var query = getQueryParams(document.location.search);
+            var query = SfdcUrlsgetQueryParams(document.location.search);
             if (query.id != undefined) {
                 objectId = query.id;
             } else if (query.fId != undefined) {
@@ -79,8 +79,8 @@ SfdcUrls = SFDC_URLS || {
             }
         }
 
-        if (!isValidId(objectId)) {
-            return null;
+        if (!SfdcUrls.isValidId(objectId)) {
+            return null; // No valid object ID found
         }
 
         var mySalesforceUrl = link.origin.replace(".lightning.force.com", ".my.salesforce.com");
