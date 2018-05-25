@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SFDC Pretty URLs
 // @namespace    github.com/msmeeks/pretty-urls-in-salesforce
-// @version      0.1
+// @version      0.2
 // @description  Convert SFDC URLs to their short form in the Lightning Experience
 // @author       msmeeks
 // @match        https://*.lightning.force.com/*
