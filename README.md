@@ -12,7 +12,7 @@ The user script version will run periodically to replace all the URLs on any Lig
 
 ## Bookmarklet
 
-The bookmarklet will replace all the URLs on any Lightning Experience page, but will only run when you click on it.
+The bookmarklet will open a prompt with a pretty version of the current Lightning Experience page's URL.
 
 ### Installation
 
