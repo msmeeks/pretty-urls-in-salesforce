@@ -65,7 +65,7 @@ var SfdcUrls = SfdcUrls || {
                 }
             }
         } else {
-            var query = SfdcUrlsgetQueryParams(document.location.search);
+            var query = SfdcUrls.getQueryParams(document.location.search);
             if (query.id != undefined) {
                 objectId = query.id;
             } else if (query.fId != undefined) {
