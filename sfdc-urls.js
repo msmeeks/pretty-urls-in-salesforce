@@ -1,16 +1,5 @@
-// ==UserScript==
-// @name         SFDC Pretty URLs
-// @namespace    github.com/msmeeks/pretty-urls-in-salesforce
-// @version      0.1
-// @description  Convert SFDC URLs to their short form in the Lightning Experience
-// @author       msmeeks
-// @match        https://*.lightning.force.com/*
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
-// @grant        none
-// ==/UserScript==
-
-(function() {
-    function getQueryParams(qs) {
+SfdcUrls = SFDC_URLS || {
+    getQueryParams: function(qs) {
         qs = qs.split("+").join(" ");
         var params = {},
             tokens, re = /[?&]?([^=]+)=([^&]*)/g;
@@ -18,9 +7,9 @@
             params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
         }
         return params;
-    }
+    },
 
-    function decodeBase64(s) {
+    decodeBase64: function(s) {
         var e = {},
             i, b = 0,
             c, x, l = 0,
@@ -40,18 +29,18 @@
             }
         }
         return r;
-    }
+    },
 
-    function isValidId(id) {
+    fisValidId: function(id) {
         return (
             id && (
                 (id.length == 15 && /[a-zA-Z0-9]{15}/.test(id)) ||
                 (id.length == 18 && /[a-zA-Z0-9]{18}/.test(id))
             )
         );
-    }
+    },
 
-    function convertUrl(link) {
+    fconvertUrl: function(link) {
         var objectId;
 
         if (~link.origin.indexOf("lightning")) {
@@ -97,17 +86,4 @@
         var mySalesforceUrl = link.origin.replace(".lightning.force.com", ".my.salesforce.com");
         return mySalesforceUrl + "/" + objectId;
     }
-
-    function convertUrlsOnPage() {
-        $('a[href]:not([data-original-href])').each(function(index, node) {
-            var oldHref = node.href;
-            var newHref = convertUrl(node);
-            if (newHref) {
-                node.href = newHref;
-                $(node).attr('data-original-href', oldHref);
-            }
-        });
-    }
-
-    setInterval(convertUrlsOnPage, 5000);
-})();
+};
