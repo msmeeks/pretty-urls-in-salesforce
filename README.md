@@ -8,7 +8,8 @@ The user script version will run periodically to replace all the URLs on any Lig
 ### Installation
 
 1. Install a user script tool, like [Tampermonkey](https://tampermonkey.net), if you don't already have one installed in your browser.
-2. Paste the code from pretty-urls-in-salesforce.user.js into a new user script following the instructions for your browsers user script tool to set up a new script.
+2. Click [here](https://github.com/msmeeks/pretty-urls-in-salesforce/raw/master/pretty-urls-in-salesforce.user.js). This should open the user script installation screen for Tampermonkey.
+3. Click the Install button.
 
 ## Bookmarklet
 
