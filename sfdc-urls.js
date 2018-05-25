@@ -1,4 +1,4 @@
-SfdcUrls = SfdcUrls || {
+var SfdcUrls = SfdcUrls || {
     getQueryParams: function(qs) {
         qs = qs.split("+").join(" ");
         var params = {},
