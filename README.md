@@ -1,7 +1,7 @@
 # pretty-urls-in-salesforce
 Automatically convert Salesforce URLs to the pretty and short format in Lightning Experience
 
-## User Scrupt
+## User Script
 
 The user script version will run periodically to replace all the URLs on any Lightning Experience page.
 
